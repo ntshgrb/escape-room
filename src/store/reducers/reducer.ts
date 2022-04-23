@@ -3,7 +3,7 @@ import { quests } from './quests';
 import { NameSpaces } from 'const';
 
 const reducer = combineReducers({
-  [NameSpaces.quests]: quests.reducer,
+  [NameSpaces.Quests]: quests.reducer,
 });
 
 export { reducer };

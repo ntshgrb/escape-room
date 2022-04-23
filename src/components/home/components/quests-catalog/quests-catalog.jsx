@@ -4,11 +4,12 @@ import * as S from './quests-catalog.styled';
 import { questsData, QuestTypes, questLevel } from '../../../../const';
 import { useState } from 'react';
 import { useAppSelector } from 'hooks';
+import { getQuestByType } from '../../../../store/selectors/selectors';
 
 const QuestsCatalog = () => {
-  const questsList = useAppSelector((state) => state.QUESTS.questsList)
-
   const [activeQuestType, setActiveQuestType] = useState(QuestTypes.All);
+  const questsList = useAppSelector(getQuestByType(activeQuestType));
+
   const onButtonClick = (evt) => {
     setActiveQuestType(evt.currentTarget.dataset.identifier);
   }

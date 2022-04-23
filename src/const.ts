@@ -32,7 +32,7 @@ export const questsData: QuestData[] = [
   {
     title: 'Ужасы',
     icon: IconHorrors,
-    identifier: 'horrors',
+    identifier: 'horror',
   },
   {
     title: 'Мистика',
@@ -47,12 +47,12 @@ export const questsData: QuestData[] = [
   {
     title: 'Sci-fi',
     icon: IconScifi,
-    identifier: 'scifi',
+    identifier: 'sci-fi',
   },
 ];
 
 export enum NameSpaces {
-  quests = 'QUESTS',
+  Quests = 'QUESTS',
 }
 
 export enum QuestTypes {

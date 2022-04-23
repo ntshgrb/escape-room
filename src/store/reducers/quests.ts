@@ -12,7 +12,7 @@ const initialState: InitialState = {
 }
 
 export const quests = createSlice({
-  name: NameSpaces.quests,
+  name: NameSpaces.Quests,
   initialState,
   reducers: {
     loadQuests: (state, action) => {
