@@ -14,6 +14,10 @@ export enum AppRoute {
   NotFound = '/notfound',
 }
 
+export enum APIRoute {
+  Quests = '/quests'
+}
+
 export const questsData: QuestData[] = [
   {
     title: 'Все квесты',
@@ -46,3 +50,16 @@ export const questsData: QuestData[] = [
     identifier: 'scifi',
   },
 ];
+
+export enum NameSpaces {
+  quests = 'QUESTS',
+}
+
+export enum QuestTypes {
+  All = 'all',
+  Adventures = 'adventures',
+  Horrors = 'horrors',
+  Mystic = 'mystic',
+  Detective = 'detective',
+  Scifi = 'scifi',
+}
