@@ -1,193 +1,205 @@
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
-import { questsData } from '../../../../const';
+import { questsData, QuestTypes } from '../../../../const';
+import { useState } from 'react';
 
-const QuestsCatalog = () => (
-  <>
-    <S.Tabs>
-      {
-        questsData.map( (questItem) => (
-          <S.TabItem>
-          <S.TabBtn>
-            <questItem.icon />
-            <S.TabTitle>{questItem.title}</S.TabTitle>
-          </S.TabBtn>
-        </S.TabItem>
-        ))
-      }
-    </S.Tabs>
+const QuestsCatalog = () => {
+  const [activeQuestType, setActiveQuestType] = useState(QuestTypes.All);
+  const onButtonClick = (evt) => {
+    setActiveQuestType(evt.currentTarget.dataset.identifier);
+  }
 
-    <S.QuestsList>
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-sklep.jpg"
-              width="344"
-              height="232"
-              alt="квест Склеп"
-            />
+  return (
+    <>
+      <S.Tabs>
+        {
+          questsData.map( (questItem) => (
+            <S.TabItem key={questItem.identifier}>
+            <S.TabBtn
+              isActive={activeQuestType === questItem.identifier}
+              data-identifier={questItem.identifier}
+              onClick={onButtonClick}
+            >
+              <questItem.icon />
+              <S.TabTitle>{questItem.title}</S.TabTitle>
+            </S.TabBtn>
+          </S.TabItem>
+          ))
+        }
+      </S.Tabs>
 
-            <S.QuestContent>
-              <S.QuestTitle>Склеп</S.QuestTitle>
+      <S.QuestsList>
+        <S.QuestItem>
+          <S.QuestItemLink to="/quest">
+            <S.Quest>
+              <S.QuestImage
+                src="img/preview-sklep.jpg"
+                width="344"
+                height="232"
+                alt="квест Склеп"
+              />
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  2–5 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  сложный
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
+              <S.QuestContent>
+                <S.QuestTitle>Склеп</S.QuestTitle>
 
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-maniac.jpg"
-              width="344"
-              height="232"
-              alt="квест Маньяк"
-            />
+                <S.QuestFeatures>
+                  <S.QuestFeatureItem>
+                    <IconPerson />
+                    2–5 чел
+                  </S.QuestFeatureItem>
+                  <S.QuestFeatureItem>
+                    <IconPuzzle />
+                    сложный
+                  </S.QuestFeatureItem>
+                </S.QuestFeatures>
+              </S.QuestContent>
+            </S.Quest>
+          </S.QuestItemLink>
+        </S.QuestItem>
 
-            <S.QuestContent>
-              <S.QuestTitle>Маньяк</S.QuestTitle>
+        <S.QuestItem>
+          <S.QuestItemLink to="/quest">
+            <S.Quest>
+              <S.QuestImage
+                src="img/preview-maniac.jpg"
+                width="344"
+                height="232"
+                alt="квест Маньяк"
+              />
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  3–6 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  средний
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
+              <S.QuestContent>
+                <S.QuestTitle>Маньяк</S.QuestTitle>
 
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-ritual.jpg"
-              width="344"
-              height="232"
-              alt="квест Ритуал"
-            />
+                <S.QuestFeatures>
+                  <S.QuestFeatureItem>
+                    <IconPerson />
+                    3–6 чел
+                  </S.QuestFeatureItem>
+                  <S.QuestFeatureItem>
+                    <IconPuzzle />
+                    средний
+                  </S.QuestFeatureItem>
+                </S.QuestFeatures>
+              </S.QuestContent>
+            </S.Quest>
+          </S.QuestItemLink>
+        </S.QuestItem>
 
-            <S.QuestContent>
-              <S.QuestTitle>Ритуал</S.QuestTitle>
+        <S.QuestItem>
+          <S.QuestItemLink to="/quest">
+            <S.Quest>
+              <S.QuestImage
+                src="img/preview-ritual.jpg"
+                width="344"
+                height="232"
+                alt="квест Ритуал"
+              />
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  3–5 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  легкий
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
+              <S.QuestContent>
+                <S.QuestTitle>Ритуал</S.QuestTitle>
 
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-old-ceil.jpg"
-              width="344"
-              height="232"
-              alt="квест История призраков"
-            />
+                <S.QuestFeatures>
+                  <S.QuestFeatureItem>
+                    <IconPerson />
+                    3–5 чел
+                  </S.QuestFeatureItem>
+                  <S.QuestFeatureItem>
+                    <IconPuzzle />
+                    легкий
+                  </S.QuestFeatureItem>
+                </S.QuestFeatures>
+              </S.QuestContent>
+            </S.Quest>
+          </S.QuestItemLink>
+        </S.QuestItem>
 
-            <S.QuestContent>
-              <S.QuestTitle>История призраков</S.QuestTitle>
+        <S.QuestItem>
+          <S.QuestItemLink to="/quest">
+            <S.Quest>
+              <S.QuestImage
+                src="img/preview-old-ceil.jpg"
+                width="344"
+                height="232"
+                alt="квест История призраков"
+              />
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  5–6 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  легкий
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
+              <S.QuestContent>
+                <S.QuestTitle>История призраков</S.QuestTitle>
 
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-final-frontier.jpg"
-              width="344"
-              height="232"
-              alt="квест Тайны старого особняка"
-            />
+                <S.QuestFeatures>
+                  <S.QuestFeatureItem>
+                    <IconPerson />
+                    5–6 чел
+                  </S.QuestFeatureItem>
+                  <S.QuestFeatureItem>
+                    <IconPuzzle />
+                    легкий
+                  </S.QuestFeatureItem>
+                </S.QuestFeatures>
+              </S.QuestContent>
+            </S.Quest>
+          </S.QuestItemLink>
+        </S.QuestItem>
 
-            <S.QuestContent>
-              <S.QuestTitle>Тайны старого особняка</S.QuestTitle>
+        <S.QuestItem>
+          <S.QuestItemLink to="/quest">
+            <S.Quest>
+              <S.QuestImage
+                src="img/preview-final-frontier.jpg"
+                width="344"
+                height="232"
+                alt="квест Тайны старого особняка"
+              />
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  2–3 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  легкий
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
+              <S.QuestContent>
+                <S.QuestTitle>Тайны старого особняка</S.QuestTitle>
 
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-house-in-the-woods.jpg"
-              width="344"
-              height="232"
-              alt="квест Хижина в лесу"
-            />
+                <S.QuestFeatures>
+                  <S.QuestFeatureItem>
+                    <IconPerson />
+                    2–3 чел
+                  </S.QuestFeatureItem>
+                  <S.QuestFeatureItem>
+                    <IconPuzzle />
+                    легкий
+                  </S.QuestFeatureItem>
+                </S.QuestFeatures>
+              </S.QuestContent>
+            </S.Quest>
+          </S.QuestItemLink>
+        </S.QuestItem>
 
-            <S.QuestContent>
-              <S.QuestTitle>Хижина в лесу</S.QuestTitle>
+        <S.QuestItem>
+          <S.QuestItemLink to="/quest">
+            <S.Quest>
+              <S.QuestImage
+                src="img/preview-house-in-the-woods.jpg"
+                width="344"
+                height="232"
+                alt="квест Хижина в лесу"
+              />
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  4–7 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  средний
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
-    </S.QuestsList>
-  </>
-);
+              <S.QuestContent>
+                <S.QuestTitle>Хижина в лесу</S.QuestTitle>
+
+                <S.QuestFeatures>
+                  <S.QuestFeatureItem>
+                    <IconPerson />
+                    4–7 чел
+                  </S.QuestFeatureItem>
+                  <S.QuestFeatureItem>
+                    <IconPuzzle />
+                    средний
+                  </S.QuestFeatureItem>
+                </S.QuestFeatures>
+              </S.QuestContent>
+            </S.Quest>
+          </S.QuestItemLink>
+        </S.QuestItem>
+      </S.QuestsList>
+    </>
+  );
+}
 
 export default QuestsCatalog;
