@@ -63,3 +63,9 @@ export enum QuestTypes {
   Detective = 'detective',
   Scifi = 'scifi',
 }
+
+export const questLevel = {
+  hard: 'сложный',
+  medium: 'средний',
+  easy: 'легкий',
+}
