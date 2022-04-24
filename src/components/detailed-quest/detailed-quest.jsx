@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchDetailedQuestAction } from '../../store/api-actions';
 import { useAppSelector } from 'hooks';
-import { questLevel, questsData } from '../../const';
+import { questLevel, questsData, questDuration } from '../../const';
 
 const DetailedQuest = () => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
@@ -43,7 +43,7 @@ const DetailedQuest = () => {
       <S.Main>
         <S.PageImage
           src={`/${coverImg}`}
-          alt="Квест Маньяк"
+          alt={`Квест ${title}`}
           width="1366"
           height="768"
         />
@@ -57,7 +57,7 @@ const DetailedQuest = () => {
             <S.Features>
               <S.FeaturesItem>
                 <IconClock width="20" height="20" />
-                <S.FeatureTitle>{duration} мин</S.FeatureTitle>
+                <S.FeatureTitle>{questDuration[duration]}</S.FeatureTitle>
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPerson width="19" height="24" />

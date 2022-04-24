@@ -71,3 +71,9 @@ export const questLevel = {
   medium: 'средний',
   easy: 'легкий',
 }
+
+export const questDuration = {
+  60: '60 мин',
+  90: '90 мин',
+  120: '120 мин',
+}
