@@ -1,7 +1,7 @@
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
-import { questsData, QuestTypes, questLevel } from '../../../../const';
+import { questsData, QuestTypes, questLevel, AppRoute } from '../../../../const';
 import { useState } from 'react';
 import { useAppSelector } from 'hooks';
 import { getQuestByType } from '../../../../store/selectors/selectors';
@@ -37,7 +37,7 @@ const QuestsCatalog = () => {
         {
           questsList.map((quest) => (
             <S.QuestItem key={quest.id}>
-              <S.QuestItemLink to="/quest">
+              <S.QuestItemLink to={`${AppRoute.QuestDetalied}/${quest.id}`}>
                 <S.Quest>
                   <S.QuestImage
                     src={quest.previewImg}

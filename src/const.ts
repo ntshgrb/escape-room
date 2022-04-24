@@ -9,7 +9,8 @@ import { QuestData } from './types/quests-data';
 
 export enum AppRoute {
   Root = '/',
-  Quest = '/quest',
+  Quest = '/detailed-quest/:id',
+  QuestDetalied = '/detailed-quest',
   Contacts = '/contacts',
   NotFound = '/notfound',
 }
