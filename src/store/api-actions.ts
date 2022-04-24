@@ -5,6 +5,7 @@ import { Quest } from '../types/quest';
 import { loadQuests } from './reducers/quests';
 import { loadDetailedQuest } from './reducers/detailed-quest';
 import { APIRoute } from 'const';
+import { OrderData } from 'types/order-data';
 
 export const fetchQuestsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -36,4 +37,18 @@ export const fetchDetailedQuestAction = createAsyncThunk<void, number, {
       console.log(error);
     }
   }
+);
+
+export const sendOrderAction = createAsyncThunk<void, OrderData, {
+  extra: AxiosInstance
+}>(
+  'detailed-quest/sendOrder',
+  async (orderData, {extra: api}) => {
+    try {
+      const response = api.post(APIRoute.Orders, orderData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 );

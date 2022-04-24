@@ -1,15 +1,18 @@
 import * as S from './booking-modal.styled';
 import { ReactComponent as IconClose } from 'assets/img/icon-close.svg';
 import { useRef } from 'react';
+import { sendOrderAction } from '../../../../store/api-actions';
+import { useDispatch } from 'react-redux';
+import { PHONE_NUMBERS_COUNT } from '../../../../const';
+
 
 const BookingModal = ({onCloseBtnClick, peopleCount}) => {
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
   const countRef = useRef(null);
+  const dispatch = useDispatch();
 
-  const onSubmit = () => {
-    //тут диспатчим формдату
-  };
+  const onSubmit = (orderData) => dispatch(sendOrderAction(orderData));
 
   const nameIsEmpty = (name) => name.trim() === '';
 
@@ -31,22 +34,28 @@ const BookingModal = ({onCloseBtnClick, peopleCount}) => {
     }
   };
 
-  const phoneIsValid = (phone) => {
-    const phoneCheck = /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/;
-    return phoneCheck.test(phone);
-  };
+  const phoneIsValid = (phone) => phone.length === PHONE_NUMBERS_COUNT;
 
   const onPhoneChange = () => {
     if (phoneRef.current !== null && !phoneIsValid(phoneRef.current.value)) {
-      phoneRef.current.setCustomValidity('Некорректный номер');
+      phoneRef.current.setCustomValidity('Номер должен состоять из 10 цифр');
     } else if (phoneRef.current !== null) {
       phoneRef.current.setCustomValidity('');
     }
   }
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
-    onSubmit();
+    if (nameRef.current !== null && phoneRef.current !== null && countRef.current !== null) {
+      event.preventDefault();
+      onSubmit(
+        {
+          name: nameRef.current.value,
+          peopleCount: +countRef.current.value,
+          phone: phoneRef.current.value,
+          isLegal: true,
+        }
+      );
+    }
   };
 
 

@@ -17,6 +17,7 @@ export enum AppRoute {
 
 export enum APIRoute {
   Quests = '/quests',
+  Orders = '/orders',
 }
 
 export const questsData: QuestData[] = [
@@ -77,3 +78,5 @@ export const questDuration = {
   90: '90 мин',
   120: '120 мин',
 }
+
+export const PHONE_NUMBERS_COUNT = 10;
