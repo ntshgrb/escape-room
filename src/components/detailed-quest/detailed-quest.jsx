@@ -1,12 +1,24 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { MainLayout } from 'components/common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
+import { useParams } from 'react-router-dom';
+import { useLayoutEffect } from 'react';
+import { fetchDetailedQuestAction } from '../../store/api-actions';
 
 const DetailedQuest = () => {
+  const dispatch = useDispatch();
+
+  const param = useParams();
+
+  useLayoutEffect(() => {
+    dispatch(fetchDetailedQuestAction(+param.id));
+  });
+
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const onBookingBtnClick = () => {

@@ -16,7 +16,7 @@ export enum AppRoute {
 }
 
 export enum APIRoute {
-  Quests = '/quests'
+  Quests = '/quests',
 }
 
 export const questsData: QuestData[] = [
@@ -54,6 +54,7 @@ export const questsData: QuestData[] = [
 
 export enum NameSpaces {
   Quests = 'QUESTS',
+  DetailedQuest = 'DETAILED_QUEST',
 }
 
 export enum QuestTypes {
