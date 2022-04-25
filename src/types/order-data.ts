@@ -3,4 +3,5 @@ export type OrderData = {
   peopleCount: number,
   phone: string,
   isLegal: boolean,
+  onSuccess: () => void,
 }

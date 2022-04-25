@@ -11,6 +11,7 @@ import Home from 'components/home/home';
 import { appTheme } from './common';
 import * as S from './app.styled';
 import { AppRoute } from '../../const';
+import Message from 'components/common/message/message';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>
@@ -18,6 +19,7 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path={AppRoute.Quest}>
+          <Message />
           <DetailedQuest />
         </Route>
         <Route exact path={AppRoute.Contacts}>

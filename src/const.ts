@@ -79,6 +79,7 @@ export const questsData: QuestData[] = [
 export enum NameSpaces {
   Quests = 'QUESTS',
   DetailedQuest = 'DETAILED_QUEST',
+  Utility = 'UTILITY',
 }
 
 export enum QuestTypes {
@@ -117,3 +118,5 @@ export const iconSize = {
   Width: 47,
   Height: 61,
 };
+
+export const TIMEOUT_SHOW_ERROR = 2000;

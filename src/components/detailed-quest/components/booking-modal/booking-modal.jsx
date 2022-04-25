@@ -12,6 +12,8 @@ const BookingModal = ({onCloseBtnClick, peopleCount}) => {
   const countRef = useRef(null);
   const dispatch = useDispatch();
 
+  const onSuccess = () => onCloseBtnClick();
+
   const onSubmit = (orderData) => dispatch(sendOrderAction(orderData));
 
   const nameIsEmpty = (name) => name.trim() === '';
@@ -53,11 +55,11 @@ const BookingModal = ({onCloseBtnClick, peopleCount}) => {
           peopleCount: +countRef.current.value,
           phone: phoneRef.current.value,
           isLegal: true,
+          onSuccess,
         }
       );
     }
   };
-
 
   return (
     <S.BlockLayer>
