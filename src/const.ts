@@ -80,3 +80,17 @@ export const questDuration = {
 }
 
 export const PHONE_NUMBERS_COUNT = 10;
+
+export const address = {
+  name: 'Санкт-Петербург',
+  latitude: 59.968137,
+  longitude: 30.316272,
+  zoom: 16,
+}
+
+export const DEFAULT_PIN = 'img/pin.svg';
+
+export const iconSize = {
+  Width: 47,
+  Height: 61,
+};
