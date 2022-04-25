@@ -9,7 +9,6 @@ import { OrderData } from 'types/order-data';
 import { setMessage } from './reducers/utility';
 import { showMessage } from './services/set-message';
 
-
 export const fetchQuestsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
@@ -21,23 +20,24 @@ export const fetchQuestsAction = createAsyncThunk<void, undefined, {
       const { data } = await api.get<Quest[]>(APIRoute.Quests);
       dispatch(loadQuests(data));
     } catch (error) {
-      console.log(error);
+      dispatch(loadQuests([]));
+      showMessage('Ошибка загрузки');
     }
   }
 );
 
-export const fetchDetailedQuestAction = createAsyncThunk<void, number, {
+export const fetchDetailedQuestAction = createAsyncThunk<void, {questId: number, setLoadingFailed: (value: boolean) => void}, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'detailed-quest/loadDetailedQuest',
-  async (questId, { dispatch, extra: api }) => {
+  async ({questId, setLoadingFailed}, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<Quest>(`${APIRoute.Quests}/${questId}`);
       dispatch(loadDetailedQuest(data));
     } catch (error) {
-      console.log(error);
+      setLoadingFailed(true);
     }
   }
 );
@@ -54,8 +54,6 @@ export const sendOrderAction = createAsyncThunk<void, OrderData, {
         showMessage('Заявка отправлена')
       }
     } catch (error) {
-      console.log({name, peopleCount, phone, isLegal});
-      console.log(error);
       showMessage(`Заявка не отправлена. Ошибка ${error}`)
     }
   },

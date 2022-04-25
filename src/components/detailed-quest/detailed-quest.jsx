@@ -10,10 +10,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchDetailedQuestAction } from '../../store/api-actions';
 import { useAppSelector } from 'hooks';
-import { questLevel, questsData, questDuration } from '../../const';
+import { questLevel, questsData, questDuration, AppRoute } from '../../const';
+import { Redirect } from 'react-router-dom';
+
 
 const DetailedQuest = () => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
+
+  const [loadingFailed, setLoadingFailed] = useState(false);
 
   const dispatch = useDispatch();
   const param = useParams();
@@ -22,8 +26,12 @@ const DetailedQuest = () => {
   const questId = +param.id;
 
   useEffect(() => {
-    dispatch(fetchDetailedQuestAction(questId));
+    dispatch(fetchDetailedQuestAction({questId, setLoadingFailed}));
   }, [dispatch, questId]);
+
+  if (loadingFailed) {
+    return <Redirect to={AppRoute.NotFound} />
+  }
 
   if (detailedQuest === null || detailedQuest.id !== questId) {
     return null;
