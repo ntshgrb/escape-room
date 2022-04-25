@@ -20,6 +20,29 @@ export enum APIRoute {
   Orders = '/orders',
 }
 
+export const navigationList = [
+  {
+    title: 'Квесты',
+    path: AppRoute.Root,
+  },
+  {
+    title: 'Новичкам',
+    path: '#',
+  },
+  {
+    title: 'Отзывы',
+    path: '#',
+  },
+  {
+    title: 'Акции',
+    path: '#',
+  },
+  {
+    title: 'Контакты',
+    path: AppRoute.Contacts,
+  }
+];
+
 export const questsData: QuestData[] = [
   {
     title: 'Все квесты',
