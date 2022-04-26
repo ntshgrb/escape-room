@@ -1,42 +1,48 @@
 import * as S from './booking-modal.styled';
 import { ReactComponent as IconClose } from 'assets/img/icon-close.svg';
-import { useRef } from 'react';
+import { useRef, FormEvent } from 'react';
 import { sendOrderAction } from '../../../../store/api-actions';
-import { useDispatch } from 'react-redux';
 import { PHONE_NUMBERS_COUNT } from '../../../../const';
+import { OrderData } from '../../../../types/order-data';
+import { useAppDispatch } from '../../../../hooks';
+
+type BookingModalProps = {
+  onCloseBtnClick: () => void,
+  peopleCount: [number, number],
+}
 
 
-const BookingModal = ({onCloseBtnClick, peopleCount}) => {
-  const nameRef = useRef(null);
-  const phoneRef = useRef(null);
-  const countRef = useRef(null);
-  const dispatch = useDispatch();
+const BookingModal = ({onCloseBtnClick, peopleCount}: BookingModalProps): JSX.Element => {
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const phoneRef = useRef<HTMLInputElement | null>(null);
+  const countRef = useRef<HTMLInputElement | null>(null);
+  const dispatch = useAppDispatch();
 
   const onSuccess = () => onCloseBtnClick();
 
-  const onSubmit = (orderData) => dispatch(sendOrderAction(orderData));
+  const onSubmit = (orderData: OrderData) => dispatch(sendOrderAction(orderData));
 
-  const nameIsEmpty = (name) => name.trim() === '';
+  const nameIsEmpty = (name: string) => name.trim() === '';
 
   const onNameChange = () => {
-    if (nameRef !== null && nameIsEmpty(nameRef.current.value)) {
+    if (nameRef.current !== null && nameIsEmpty(nameRef.current.value)) {
       nameRef.current.setCustomValidity('Имя не может состоять из пробелов');
-    } else if (nameRef !== null) {
+    } else if (nameRef.current !== null) {
       nameRef.current.setCustomValidity('');
     }
   };
 
-  const countIsValid = (count) => (count >= peopleCount[0] && count <= peopleCount[1]);
+  const countIsValid = (count: number) => (count >= peopleCount[0] && count <= peopleCount[1]);
 
   const onCountChange = () => {
-    if (countRef.current !== null && !countIsValid(countRef.current.value)) {
+    if (countRef.current !== null && !countIsValid(+countRef.current.value)) {
       countRef.current.setCustomValidity(`В это квесте могут участвовать от ${peopleCount[0]} до ${peopleCount[1]} человек`);
     } else if (countRef.current !== null) {
       countRef.current.setCustomValidity('');
     }
   };
 
-  const phoneIsValid = (phone) => phone.length === PHONE_NUMBERS_COUNT;
+  const phoneIsValid = (phone: string) => phone.length === PHONE_NUMBERS_COUNT;
 
   const onPhoneChange = () => {
     if (phoneRef.current !== null && !phoneIsValid(phoneRef.current.value)) {
@@ -46,7 +52,7 @@ const BookingModal = ({onCloseBtnClick, peopleCount}) => {
     }
   }
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     if (nameRef.current !== null && phoneRef.current !== null && countRef.current !== null) {
       event.preventDefault();
       onSubmit(

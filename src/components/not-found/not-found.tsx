@@ -1,5 +1,4 @@
 import { MainLayout, PageTitle } from '../common/common';
-import { Link } from '../common/common.js';
 import { AppRoute } from '../../const';
 import * as S from './not-found.styled';
 

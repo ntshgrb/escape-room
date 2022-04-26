@@ -1,12 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
-import RalewayRegularWoff2 from 'assets/fonts/raleway-regular.woff2';
-import RalewayMediumWoff2 from 'assets/fonts/raleway-medium.woff2';
-import RalewaySemiBoldWoff2 from 'assets/fonts/raleway-semibold.woff2';
-import RalewayBoldWoff2 from 'assets/fonts/raleway-bold.woff2';
-import RalewayExtraBoldWoff2 from 'assets/fonts/raleway-extrabold.woff2';
-import RalewayBlackWoff2 from 'assets/fonts/raleway-black.woff2';
+import { DefaultAppTheme } from '../../types/default-app-theme';
+const RalewayRegularWoff2 = require('../../assets/fonts/raleway-regular.woff2');
+const RalewayMediumWoff2 = require('../../assets/fonts/raleway-medium.woff2');
+const RalewaySemiBoldWoff2 = require('assets/fonts/raleway-semibold.woff2');
+const RalewayBoldWoff2 = require('assets/fonts/raleway-bold.woff2');
+const RalewayExtraBoldWoff2 = require('assets/fonts/raleway-extrabold.woff2');
+const RalewayBlackWoff2 = require('assets/fonts/raleway-black.woff2');
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<DefaultAppTheme>`
   @font-face {
     font-family: 'Raleway';
     font-style: normal;

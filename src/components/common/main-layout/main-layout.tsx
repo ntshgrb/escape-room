@@ -1,6 +1,10 @@
 import { Header, Footer } from 'components/common/common';
 
-const MainLayout = ({ children }) => (
+type MainLayoutProps = {
+  children: React.ReactNode;
+}
+
+const MainLayout = ({ children }: MainLayoutProps) => (
   <>
     <Header />
     {children}

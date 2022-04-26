@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'components/common/common';
 
+type TabBtnProps = {
+  isActive?: boolean;
+}
+
 const Tabs = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -36,7 +40,7 @@ const TabItem = styled.li`
   }
 `;
 
-const TabBtn = styled.button.attrs({ type: 'button' })`
+const TabBtn = styled.button.attrs({ type: 'button' })<TabBtnProps>`
   display: flex;
   align-items: center;
   padding: 0;

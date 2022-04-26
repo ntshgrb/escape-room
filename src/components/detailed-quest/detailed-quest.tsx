@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { MainLayout } from 'components/common/common';
 import { ReactComponent as IconClock } from 'assets/img/icon-clock.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
@@ -12,22 +11,27 @@ import { fetchDetailedQuestAction } from '../../store/api-actions';
 import { useAppSelector } from 'hooks';
 import { questLevel, questsData, questDuration, AppRoute } from '../../const';
 import { Redirect } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
 
 
 const DetailedQuest = () => {
+  type useParamsParams = {
+    id: string;
+  };
+
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const [loadingFailed, setLoadingFailed] = useState(false);
 
-  const dispatch = useDispatch();
-  const param = useParams();
+  const dispatch = useAppDispatch();
+  const param = useParams<useParamsParams>();
   const { detailedQuest } = useAppSelector((state) => state.DETAILED_QUEST);
-
   const questId = +param.id;
 
   useEffect(() => {
+    if (param.id)
     dispatch(fetchDetailedQuestAction({questId, setLoadingFailed}));
-  }, [dispatch, questId]);
+  }, [dispatch, param, questId]);
 
   if (loadingFailed) {
     return <Redirect to={AppRoute.NotFound} />
@@ -40,7 +44,7 @@ const DetailedQuest = () => {
   const { coverImg, description, duration, level, peopleCount, title, type } = detailedQuest;
 
   const questTypeData = questsData.find((questData) => questData.identifier === type);
-  const questType = questTypeData.title.toLowerCase();
+  const questType = questTypeData?.title ? questTypeData.title.toLowerCase() : '';
 
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);
@@ -69,7 +73,7 @@ const DetailedQuest = () => {
             <S.Features>
               <S.FeaturesItem>
                 <IconClock width="20" height="20" />
-                <S.FeatureTitle>{questDuration[duration]}</S.FeatureTitle>
+                <S.FeatureTitle>{questDuration.get(String(duration))}</S.FeatureTitle>
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPerson width="19" height="24" />
@@ -77,7 +81,7 @@ const DetailedQuest = () => {
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPuzzle width="24" height="24" />
-                <S.FeatureTitle>{questLevel[level]}</S.FeatureTitle>
+                <S.FeatureTitle>{questLevel.get(level)}</S.FeatureTitle>
               </S.FeaturesItem>
             </S.Features>
 

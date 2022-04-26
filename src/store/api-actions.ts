@@ -43,6 +43,8 @@ export const fetchDetailedQuestAction = createAsyncThunk<void, {questId: number,
 );
 
 export const sendOrderAction = createAsyncThunk<void, OrderData, {
+  dispatch: AppDispatch,
+  state: State,
   extra: AxiosInstance
 }>(
   'detailed-quest/sendOrder',

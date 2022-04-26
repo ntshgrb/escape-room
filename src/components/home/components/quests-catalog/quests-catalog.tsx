@@ -1,17 +1,19 @@
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
-import { questsData, QuestTypes, questLevel, AppRoute } from '../../../../const';
+import { questsData, DEFAULT_QUEST_TYPE, questLevel, AppRoute } from '../../../../const';
 import { useState } from 'react';
 import { useAppSelector } from 'hooks';
 import { getQuestByType } from '../../../../store/selectors/selectors';
 
 const QuestsCatalog = () => {
-  const [activeQuestType, setActiveQuestType] = useState(QuestTypes.All);
+  const [activeQuestType, setActiveQuestType] = useState(DEFAULT_QUEST_TYPE);
   const questsList = useAppSelector(getQuestByType(activeQuestType));
 
-  const onButtonClick = (evt) => {
-    setActiveQuestType(evt.currentTarget.dataset.identifier);
+  const onButtonClick = (evt: React.MouseEvent<HTMLElement>) => {
+    if (evt.currentTarget.dataset.identifier) {
+      setActiveQuestType(evt.currentTarget.dataset.identifier);
+    }
   }
 
   return (
@@ -56,7 +58,7 @@ const QuestsCatalog = () => {
                       </S.QuestFeatureItem>
                       <S.QuestFeatureItem>
                         <IconPuzzle />
-                        {questLevel[quest.level]}
+                        {questLevel.get(quest.level)}
                       </S.QuestFeatureItem>
                     </S.QuestFeatures>
                   </S.QuestContent>

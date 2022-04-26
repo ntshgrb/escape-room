@@ -13,7 +13,7 @@ import * as S from './app.styled';
 import { AppRoute } from '../../const';
 import Message from 'components/common/message/message';
 
-const App = () => (
+const App = (): JSX.Element => (
   <ThemeProvider theme={appTheme}>
     <S.GlobalStyle />
     <Router>

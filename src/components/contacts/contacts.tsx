@@ -3,7 +3,7 @@ import Map from './components/map/map';
 import * as S from './contacts.styled';
 import { address } from '../../const';
 
-const Contacts = () => (
+const Contacts = (): JSX.Element => (
   <MainLayout>
     <S.Main>
       <S.ContentWrapper>

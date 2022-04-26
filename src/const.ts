@@ -82,6 +82,8 @@ export enum NameSpaces {
   Utility = 'UTILITY',
 }
 
+export const DEFAULT_QUEST_TYPE = 'all';
+
 export enum QuestTypes {
   All = 'all',
   Adventures = 'adventures',
@@ -91,17 +93,17 @@ export enum QuestTypes {
   Scifi = 'scifi',
 }
 
-export const questLevel = {
-  hard: 'сложный',
-  medium: 'средний',
-  easy: 'легкий',
-}
+export const questLevel = new Map([
+  ['hard', 'сложный'],
+  ['medium', 'средний'],
+  ['easy', 'легкий'],
+]);
 
-export const questDuration = {
-  60: '60 мин',
-  90: '90 мин',
-  120: '120 мин',
-}
+export const questDuration = new Map([
+  ['60', '60 мин'],
+  ['90', '90 мин'],
+  ['120', '120 мин'],
+]);
 
 export const PHONE_NUMBERS_COUNT = 10;
 

@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Container, Link as RouterLink } from 'components/common/common';
 
+type LinkProps = {
+  $isActiveLink?: boolean,
+}
+
 const StyledHeader = styled.header`
   z-index: 5;
   position: fixed;
@@ -64,7 +68,7 @@ const LinkItem = styled.li`
   }
 `;
 
-const Link = styled(RouterLink)`
+const Link = styled(RouterLink)<LinkProps>`
   display: block;
   max-width: 100px;
   font-size: ${({ theme }) => theme.font.semibase};

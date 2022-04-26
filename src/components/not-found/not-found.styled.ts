@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import contactsBg from 'assets/img/contacts-bg.jpg';
-import { Link } from '../common/common.js';
+import { Link } from '../common/common';
 
 const Main = styled.main`
   display: flex;
