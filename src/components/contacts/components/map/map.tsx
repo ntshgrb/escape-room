@@ -30,7 +30,7 @@ function Map ({address}: MapProps): JSX.Element {
         })
         .addTo(map);
     }
-  }, [map, address]);
+  }, [map, address, defaultIcon]);
 
   return (
     <S.Map
