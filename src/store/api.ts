@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 const BACKEND_URL = 'http://localhost:3001';
 const REQUEST_TIMEOUT = 5000;

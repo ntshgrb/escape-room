@@ -12,19 +12,16 @@ import { useAppSelector } from 'hooks';
 import { questLevel, questsData, questDuration, AppRoute } from '../../const';
 import { Redirect } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
+import { paramsParams } from '../../types/params-params'
 
 
 const DetailedQuest = () => {
-  type useParamsParams = {
-    id: string;
-  };
-
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const [loadingFailed, setLoadingFailed] = useState(false);
 
   const dispatch = useAppDispatch();
-  const param = useParams<useParamsParams>();
+  const param = useParams<paramsParams>();
   const { detailedQuest } = useAppSelector((state) => state.DETAILED_QUEST);
   const questId = +param.id;
 
